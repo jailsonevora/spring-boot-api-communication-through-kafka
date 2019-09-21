@@ -38,14 +38,14 @@ public class StoreController implements IGenericCRUD<StoreModel> {
 
     @RequestMapping(value = "/store/{id}", method = RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves given store", response= StoreModel.class)
-    public ResponseEntity<?> show(@Valid @PathVariable Long id){
-        CheckExistence(id);
+    public ResponseEntity<?> get(@Valid @PathVariable Long id){
+        checkIfExist(id);
         return new ResponseEntity<> (storeRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()), HttpStatus.OK);
     }
 
     @RequestMapping(value="/store", method=RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves all the stores", response=StoreModel.class, responseContainer="List")
-    public ResponseEntity<Page<StoreModel>> showall(Pageable pageable) {
+    public ResponseEntity<Page<StoreModel>> getAll(Pageable pageable) {
         return new ResponseEntity<>(storeRepository.findAllByStatus(Status.PUBLISHED.ordinal(), pageable), HttpStatus.OK);
     }
 
@@ -109,7 +109,7 @@ public class StoreController implements IGenericCRUD<StoreModel> {
     }
 
     // region private
-    private void CheckExistence(Long id) throws ResourceNotFoundException {
+    private void checkIfExist(Long id) throws ResourceNotFoundException {
         storeRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()).orElseThrow(() -> new ResourceNotFoundException("Store with id " + id + " not found"));
     }
     // endregion

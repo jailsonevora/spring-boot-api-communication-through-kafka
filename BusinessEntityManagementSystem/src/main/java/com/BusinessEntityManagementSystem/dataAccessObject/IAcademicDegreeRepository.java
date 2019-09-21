@@ -7,7 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface IAcademicDegree extends PagingAndSortingRepository<AcademicDegreeModel, Long> {
+public interface IAcademicDegreeRepository extends PagingAndSortingRepository<AcademicDegreeModel, Long> {
 
     Optional<AcademicDegreeModel> findByIdAndStatus(long id, int status);
 

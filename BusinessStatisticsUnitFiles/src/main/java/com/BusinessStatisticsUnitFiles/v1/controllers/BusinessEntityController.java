@@ -23,7 +23,6 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController("BusinessEntityV1")
 @RequestMapping("/api/businessStatisticsUnitFiles/v1")
@@ -41,20 +40,20 @@ public class BusinessEntityController implements IGenericCRUD<BusinessEntityMode
 
     @RequestMapping(value = "/businessEntity/{id}", method = RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves given entity", response=BusinessEntityModel.class)
-    public ResponseEntity<?> show(@Valid @PathVariable Long id){
-        CheckExistence(id);
+    public ResponseEntity<?> get(@Valid @PathVariable Long id){
+        checkIfExist(id);
         return new ResponseEntity<> (businessEntityRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()), HttpStatus.OK);
     }
 
     @RequestMapping(value="/businessEntity", method=RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves all the entities", response=BusinessEntityModel.class, responseContainer="List")
-    public ResponseEntity<Page<BusinessEntityModel>> showall(@Valid Pageable pageable) {
+    public ResponseEntity<Page<BusinessEntityModel>> getAll(@Valid Pageable pageable) {
         return new ResponseEntity<>(businessEntityRepository.findAllByStatus(Status.PUBLISHED.ordinal(), pageable), HttpStatus.OK);
     }
 
     @RequestMapping(value="/checkentity/{key}", method=RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Validate entry entity")
-    public ResponseEntity<?> checkentity(@Valid @PathVariable String key) {
+    public ResponseEntity<?> checkEntity(@Valid @PathVariable String key) {
 
         if (businessEntityRepository.existsBusinessEntityModelByNaturalId(key))
             return new ResponseEntity<String>(HttpStatus.OK);
@@ -120,7 +119,7 @@ public class BusinessEntityController implements IGenericCRUD<BusinessEntityMode
         return responseHeaders;
     }
 
-    private void CheckExistence(Long id) throws ResourceNotFoundException {
+    private void checkIfExist(Long id) throws ResourceNotFoundException {
         businessEntityRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()).orElseThrow(() -> new ResourceNotFoundException("Country with id " + id + " not found"));
     }
     // endregion

@@ -23,7 +23,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController("BusinessEntityV1")
-@RequestMapping("/api/businessStatisticsUnitFiles/v1")
+@RequestMapping("/api/businessEntityManagementSystem/v1")
 @Api(value = "businessEntity")
 public class BusinessEntityController implements IGenericCRUD<BusinessEntityModel> {
 
@@ -38,14 +38,14 @@ public class BusinessEntityController implements IGenericCRUD<BusinessEntityMode
 
     @RequestMapping(value = "/businessEntity/{id}", method = RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves given entity", response=BusinessEntityModel.class)
-    public ResponseEntity<?> show(@Valid @PathVariable Long id){
-        CheckExistence(id);
+    public ResponseEntity<?> get(@Valid @PathVariable Long id){
+        checkIfExist(id);
         return new ResponseEntity<> (businessEntityRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()), HttpStatus.OK);
     }
 
     @RequestMapping(value="/businessEntity", method=RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves all the entities", response=BusinessEntityModel.class, responseContainer="List")
-    public ResponseEntity<Page<BusinessEntityModel>> showall(@Valid Pageable pageable) {
+    public ResponseEntity<Page<BusinessEntityModel>> getAll(@Valid Pageable pageable) {
         return new ResponseEntity<>(businessEntityRepository.findAllByStatus(Status.PUBLISHED.ordinal(), pageable), HttpStatus.OK);
     }
 
@@ -117,7 +117,7 @@ public class BusinessEntityController implements IGenericCRUD<BusinessEntityMode
         return responseHeaders;
     }
 
-    private void CheckExistence(Long id) throws ResourceNotFoundException {
+    private void checkIfExist(Long id) throws ResourceNotFoundException {
         businessEntityRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()).orElseThrow(() -> new ResourceNotFoundException("Country with id " + id + " not found"));
     }
     // endregion

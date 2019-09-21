@@ -34,14 +34,14 @@ public class AffiliatedCompanyController implements IGenericCRUD<AffiliatedCompa
 
     @RequestMapping(value = "/affiliatedCompany/{id}", method = RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves given affiliated company", response= AffiliatedCompanyModel.class)
-    public ResponseEntity<?> show(@Valid @PathVariable Long id){
+    public ResponseEntity<?> get(@Valid @PathVariable Long id){
         CheckExistence(id);
         return new ResponseEntity<> (affiliatedCompanyRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()), HttpStatus.OK);
     }
 
     @RequestMapping(value="/affiliatedCompany", method=RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves all the affiliated company", response= AffiliatedCompanyModel.class, responseContainer="List")
-    public ResponseEntity<Page<AffiliatedCompanyModel>> showall(Pageable pageable) {
+    public ResponseEntity<Page<AffiliatedCompanyModel>> getAll(Pageable pageable) {
         return new ResponseEntity<>(affiliatedCompanyRepository.findAllByStatus(Status.PUBLISHED.ordinal(), pageable), HttpStatus.OK);
     }
 

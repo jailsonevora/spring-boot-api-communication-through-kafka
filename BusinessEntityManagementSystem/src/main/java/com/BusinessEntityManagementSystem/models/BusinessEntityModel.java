@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="BSUF_BusinessEntity")
+@Table(name="BEMS_BusinessEntity")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class BusinessEntityModel<IAddressModel extends AddressModel, IPartnerModel extends PartnerModel, IStoreModel extends StoreModel, IAffiliatedCompanyModel extends AffiliatedCompanyModel, IEconomicActivityCodeModel extends EconomicActivityCodeModel> extends AuditModel<String> implements IBusinessEntityModel, Serializable {
 

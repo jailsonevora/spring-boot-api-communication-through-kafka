@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name="BSUF_Partner")
+@Table(name="BEMS_Partner")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PartnerModel<IBusinessEntityModel extends  BusinessEntityModel> extends AuditModel<String> implements IPartnerModel, Serializable {
 

@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name="BSUF_AffiliatedCompany")
+@Table(name="BEMS_AffiliatedCompany")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class AffiliatedCompanyModel<IBusinessEntityModel extends BusinessEntityModel> extends AuditModel<String> implements IAffiliatedCompanyModel, Serializable {
 

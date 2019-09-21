@@ -38,14 +38,14 @@ public class EconomicActivityCodeController implements IGenericCRUD<EconomicActi
 
     @RequestMapping(value = "/economicActivityCode/{id}", method = RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves given Economic Activity Code", response= EconomicActivityCodeModel.class)
-    public ResponseEntity<?> show(@Valid @PathVariable Long id){
-        CheckExistence(id);
+    public ResponseEntity<?> get(@Valid @PathVariable Long id){
+        checkIfExist(id);
         return new ResponseEntity<> (economicActivityCodeRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()), HttpStatus.OK);
     }
 
     @RequestMapping(value="/economicActivityCode", method=RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves all the Economic Activity Code", response=EconomicActivityCodeModel.class, responseContainer="List")
-    public ResponseEntity<Page<EconomicActivityCodeModel>> showall(Pageable pageable) {
+    public ResponseEntity<Page<EconomicActivityCodeModel>> getAll(Pageable pageable) {
         return new ResponseEntity<>(economicActivityCodeRepository.findAllByStatus(Status.PUBLISHED.ordinal(), pageable), HttpStatus.OK);
     }
 
@@ -111,7 +111,7 @@ public class EconomicActivityCodeController implements IGenericCRUD<EconomicActi
     }
 
     // region private
-    private void CheckExistence(Long id) throws ResourceNotFoundException {
+    private void checkIfExist(Long id) throws ResourceNotFoundException {
         economicActivityCodeRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()).orElseThrow(() -> new ResourceNotFoundException("Economic Activity Code with id " + id + " not found"));
     }
     // endregion

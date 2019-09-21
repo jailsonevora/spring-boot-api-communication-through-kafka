@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name="BSUF_Address")
+@Table(name="BEMS_Address")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class AddressModel extends AuditModel<String> implements IAddressModel, Serializable {
 

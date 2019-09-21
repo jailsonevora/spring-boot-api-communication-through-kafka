@@ -39,14 +39,14 @@ public class PartnerController implements IGenericCRUD<PartnerModel> {
 
     @RequestMapping(value = "/partners/{id}", method = RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves given partner", response= PartnerModel.class)
-    public ResponseEntity<?> show(@Valid @PathVariable Long id){
-        CheckExistence(id);
+    public ResponseEntity<?> get(@Valid @PathVariable Long id){
+        checkIfExist(id);
         return new ResponseEntity<> (partnerRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()), HttpStatus.OK);
     }
 
     @RequestMapping(value="/partners", method=RequestMethod.GET, produces = "application/json")
     @ApiOperation(value = "Retrieves all the partners", response=PartnerModel.class, responseContainer="List")
-    public ResponseEntity<Page<PartnerModel>> showall(Pageable pageable) {
+    public ResponseEntity<Page<PartnerModel>> getAll(Pageable pageable) {
         return new ResponseEntity<>(partnerRepository.findAllByStatus(Status.PUBLISHED.ordinal(), pageable), HttpStatus.OK);
     }
 
@@ -106,7 +106,7 @@ public class PartnerController implements IGenericCRUD<PartnerModel> {
     }
 
     // region private
-    private void CheckExistence(Long id) throws ResourceNotFoundException {
+    private void checkIfExist(Long id) throws ResourceNotFoundException {
         partnerRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()).orElseThrow(() -> new ResourceNotFoundException("Partner with id " + id + " not found"));
     }
     // endregion

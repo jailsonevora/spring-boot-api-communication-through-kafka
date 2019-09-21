@@ -10,9 +10,9 @@ import javax.validation.Valid;
 
 public interface IGenericCRUD<T> {
 
-    ResponseEntity<?> show(@Valid @PathVariable Long id);
+    ResponseEntity<?> get(@Valid @PathVariable Long id);
 
-    ResponseEntity<Page<T>> showall(Pageable pageable);
+    ResponseEntity<Page<T>> getAll(Pageable pageable);
 
     ResponseEntity<Void> create(@Valid @RequestBody T newEntry);
 

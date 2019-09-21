@@ -7,7 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface ICountry extends PagingAndSortingRepository<CountryModel, Long> {
+public interface ICountryRepository extends PagingAndSortingRepository<CountryModel, Long> {
 
     Optional<CountryModel> findByIdAndStatus(long id, int status);
 

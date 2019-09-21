@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="BSUF_Store")
+@Table(name="BEMS_Store")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class StoreModel<IEconomicActivityCodeModel extends  EconomicActivityCodeModel, IBusinessEntityModel extends BusinessEntityModel> extends AuditModel<String> implements IStoreModel, Serializable {
 

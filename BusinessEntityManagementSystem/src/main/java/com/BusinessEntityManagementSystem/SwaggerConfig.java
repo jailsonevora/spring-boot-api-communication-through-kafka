@@ -21,8 +21,8 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.BusinessStatisticsUnitFiles"))
-                .paths(PathSelectors.ant("/api/businessStatisticsUnitFiles/v1/**"))
+                .apis(RequestHandlerSelectors.basePackage("com.BusinessEntityManagementSystem"))
+                .paths(PathSelectors.ant("/api/businessEntityManagementSystem/v1/**"))
                 .build()
                 .apiInfo(metaData())
 				/*.produces(de)
@@ -31,8 +31,8 @@ public class SwaggerConfig {
 
     private ApiInfo metaData() {
         return new ApiInfo(
-                "Business Statistics Unit Files REST API",
-                "Business Statistics Unit Files",
+                "Business Entity Management System REST API",
+                "Business Entity Management System",
                 "1.0",
                 "TERMS OF SERVICE URL",
                 new Contact("Jailson Eduardo Evora", "https://www.linkedin.com/in/jeevora/", ""),

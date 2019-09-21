@@ -15,9 +15,9 @@ public interface IAddress {
 
     ResponseEntity<Page<AddressModel>> showall(Pageable pageable);
 
-    ResponseEntity<Void> create(@Valid @RequestBody AddressModel newContact);
+    ResponseEntity<Void> create(@Valid @RequestBody AddressModel newAddress);
 
-    ResponseEntity<Void> update(@Valid @PathVariable Long id, @Valid @RequestBody AddressModel contactToUpdate);
+    ResponseEntity<Void> update(@Valid @PathVariable Long id, @Valid @RequestBody AddressModel addressToUpdate);
 
     ResponseEntity<Void> delete(@Valid @PathVariable Long id, @Valid @RequestBody String lastModifiedBy);
 }
