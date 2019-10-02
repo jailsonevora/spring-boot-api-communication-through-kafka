@@ -9,6 +9,4 @@ As an example, we can refer to a transaction. By the standard pro-grammatically 
 
 The API is a simple module to implement a CRUD operation of Business Entity from a more complex system with the intention to coordinate and harmonize economic information relating to enterprises, establishments, and groups of entities. For the sake of simplicity, the API uses the H2 in-memory database.
 
-Project Structure
-
 The project structure is constituted by three modules, but this post will focus on the module to manage entities. That module has a dependency from the Common module, where it shares things like the error handling and essential useful classes with the remaining part of the whole system.
