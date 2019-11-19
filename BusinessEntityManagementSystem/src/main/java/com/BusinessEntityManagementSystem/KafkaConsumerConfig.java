@@ -1,5 +1,6 @@
 package com.BusinessEntityManagementSystem;
 
+/*
 
 import com.BusinessEntityManagementSystem.dataTransferObject.BusinessEntity;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -16,7 +17,7 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import java.util.HashMap;
 import java.util.Map;
 
-/*@Configuration
+@Configuration
 @EnableKafka
 public class KafkaConsumerConfig {
 
@@ -40,7 +41,7 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(
                 consumerConfigs(),
                 new StringDeserializer(),
-                new JsonDeserializer<>(BusinessEntity.class));
+                new JsonDeserializer<>(BusinessEntity.class, false));
     }
 
     @Bean
@@ -50,5 +51,6 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
-}*/
+}
 
+*/

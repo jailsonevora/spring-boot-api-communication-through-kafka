@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name="BSUF_Store")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class StoreModel<IEconomicActivityCodeModel extends  EconomicActivityCodeModel, IBusinessEntityModel extends BusinessEntityModel> extends AuditModel<String> implements IStoreModel, Serializable {
+public class StoreModel<IEconomicActivityCodeModel extends  EconomicActivityCodeModel, IBusinessEntityModel extends BusinessEntityModel> extends AuditModel<String> implements IStoreModel<IEconomicActivityCodeModel>, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,8 +60,6 @@ public class StoreModel<IEconomicActivityCodeModel extends  EconomicActivityCode
 
     public long getStoreId() { return id; }
 
-    public void setStoreId(long id) { this.id = id; }
-
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
@@ -69,4 +67,12 @@ public class StoreModel<IEconomicActivityCodeModel extends  EconomicActivityCode
     public int getStatus() { return status; }
 
     public void setStatus(int status) { this.status = status; }
+
+    public Set<IEconomicActivityCodeModel> getEconomicActivityCode() {
+        return economicActivityCode;
+    }
+
+    public void setEconomicActivityCode(Set<IEconomicActivityCodeModel> economicActivityCode) {
+        this.economicActivityCode = economicActivityCode;
+    }
 }

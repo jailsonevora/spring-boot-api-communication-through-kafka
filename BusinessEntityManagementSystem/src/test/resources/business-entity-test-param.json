@@ -1,0 +1,86 @@
+{
+  "address": {
+    "address": "string",
+    "approvedBy": "string",
+    "createdAt": "2019-10-25T15:41:49.805Z",
+    "createdBy": "string",
+    "email": "kafka2@df.com",
+    "lastModifiedBy": "string",
+    "renewedBy": "string",
+    "status": 1,
+    "updatedAt": "2019-10-25T15:41:49.806Z"
+  },
+  "affiliatedCompany": [
+    {
+      "approvedBy": "string",
+      "createdAt": "2019-10-25T15:41:49.806Z",
+      "createdBy": "string",
+      "integrationDate": "2019-10-25T15:41:49.806Z",
+      "lastModifiedBy": "string",
+      "percentageShared": 0,
+      "renewedBy": "string",
+      "status": 1,
+      "updatedAt": "2019-10-25T15:41:49.806Z"
+    }
+  ],
+  "approvedBy": "string",
+  "createdAt": "2019-10-25T15:41:49.806Z",
+  "createdBy": "string",
+  "economicActivityCode": [
+    {
+      "approvedBy": "string",
+      "createdAt": "2019-10-25T15:41:49.806Z",
+      "createdBy": "string",
+      "description": "string",
+      "economicActivityCode": "string",
+      "lastModifiedBy": "string",
+      "renewedBy": "string",
+      "status": 1,
+      "updatedAt": "2019-10-25T15:41:49.806Z"
+    }
+  ],
+  "lastModifiedBy": "string",
+  "naturalId": 0,
+  "partner": [
+    {
+      "approvedBy": "string",
+      "createdAt": "2019-10-25T15:41:49.806Z",
+      "createdBy": "string",
+      "lastModifiedBy": "string",
+      "name": "string",
+      "num": 0,
+      "renewedBy": "string",
+      "status": 1,
+      "updatedAt": "2019-10-25T15:41:49.806Z"
+    }
+  ],
+  "renewedBy": "string",
+  "status": 1,
+  "store": [
+    {
+      "approvedBy": "string",
+      "createdAt": "2019-10-25T15:41:49.806Z",
+      "createdBy": "string",
+      "economicActivityCode": [
+        {
+          "approvedBy": "string",
+          "createdAt": "2019-10-25T15:41:49.806Z",
+          "createdBy": "string",
+          "description": "string",
+          "economicActivityCode": "string",
+          "lastModifiedBy": "string",
+          "renewedBy": "string",
+          "status": 1,
+          "updatedAt": "2019-10-25T15:41:49.806Z"
+        }
+      ],
+      "lastModifiedBy": "string",
+      "name": "string",
+      "renewedBy": "string",
+      "status": 1,
+      "updatedAt": "2019-10-25T15:41:49.806Z"
+    }
+  ],
+  "taxId": "string",
+  "updatedAt": "2019-10-25T15:41:49.806Z"
+}

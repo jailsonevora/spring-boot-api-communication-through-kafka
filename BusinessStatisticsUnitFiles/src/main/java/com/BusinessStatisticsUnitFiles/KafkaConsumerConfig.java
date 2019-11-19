@@ -16,7 +16,7 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import java.util.HashMap;
 import java.util.Map;
 
-/*@Configuration
+@Configuration
 @EnableKafka
 public class KafkaConsumerConfig {
 
@@ -31,7 +31,8 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "statistics-BusinessStatisticsUnitFiles-group");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.BusinessStatisticsUnitFiles");
+        props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+        //props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, "false");
         return props;
     }
 
@@ -40,7 +41,7 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(
                 consumerConfigs(),
                 new StringDeserializer(),
-                new JsonDeserializer<>(BusinessEntity.class));
+                new JsonDeserializer<>(BusinessEntity.class, false));
     }
 
     @Bean
@@ -50,5 +51,5 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
-}*/
+}
 

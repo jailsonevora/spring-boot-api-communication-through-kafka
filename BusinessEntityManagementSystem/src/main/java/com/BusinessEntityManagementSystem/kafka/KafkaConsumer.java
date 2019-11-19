@@ -1,5 +1,6 @@
 package com.BusinessEntityManagementSystem.kafka;
 
+/*
 
 import com.BusinessEntityManagementSystem.dataAccessObject.IBusinessEntityRepository;
 import com.BusinessEntityManagementSystem.dataTransferObject.BusinessEntity;
@@ -15,7 +16,6 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-/*
 
 @Component
 public class KafkaConsumer {
@@ -33,10 +33,9 @@ public class KafkaConsumer {
                                     @Headers MessageHeaders headers) {
         LOG.info("received from SGE data");
         //LOG.info("received from business-entity-management-system data='{}'", data);
-		*/
-/*headers.keySet().forEach(key -> {
+headers.keySet().forEach(key -> {
 					LOG.info("{}: {}", key, headers.get(key));
-				});*//*
+				});
 
 
         BusinessEntityModel recivedEntity = new BusinessEntityModel();
@@ -44,8 +43,7 @@ public class KafkaConsumer {
       //  businessEntityRepository.save(BindingUniverseDefaultSchemaToUniverse.Binding(recivedEntity, data));
     }
 
-	*/
-/*@KafkaListener(topics = "${statistics.kafka.topic.update.entity}", groupId = "statistics-BusinessStatisticsUnitFiles-group")
+@KafkaListener(topics = "${statistics.kafka.topic.update.entity}", groupId = "statistics-BusinessStatisticsUnitFiles-group")
 	@KafkaHandler
 	public void receiveUpdateEntity(@Payload BusinessEntity data,
 	                                @Headers MessageHeaders headers) {
@@ -54,8 +52,8 @@ public class KafkaConsumer {
 		headers.keySet().forEach(key -> {
 			LOG.info("{}: {}", key, headers.get(key));
 		});
-	}*//*
+	}
 
 }
-
 */
+

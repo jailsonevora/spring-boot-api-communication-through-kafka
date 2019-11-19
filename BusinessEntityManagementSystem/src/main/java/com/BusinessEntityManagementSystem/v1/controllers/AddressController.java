@@ -54,7 +54,7 @@ public class AddressController implements IGenericCRUD<AddressModel> {
     @Transactional
     @RequestMapping(value = "/address", method = RequestMethod.POST, produces = "application/json")
     @ApiOperation(value = "Creates a new address", notes="The newly created address Id will be sent in the location response header")
-    public ResponseEntity<Void> create(@Valid @RequestBody AddressModel newAddress){
+    public ResponseEntity<String> create(@Valid @RequestBody AddressModel newAddress){
 
         newAddress = addressRepository.save(newAddress);
 

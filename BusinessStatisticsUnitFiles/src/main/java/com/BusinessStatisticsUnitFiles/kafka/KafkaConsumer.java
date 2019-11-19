@@ -1,6 +1,7 @@
 package com.BusinessStatisticsUnitFiles.kafka;
 
 
+import com.BusinessStatisticsUnitFiles.binding.RetrieveConsumerFromReceivedProducerObject;
 import com.BusinessStatisticsUnitFiles.dataAccessObject.IBusinessEntityRepository;
 import com.BusinessStatisticsUnitFiles.dataTransferObject.BusinessEntity;
 import com.BusinessStatisticsUnitFiles.models.BusinessEntityModel;
@@ -15,7 +16,6 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-/*
 
 @Component
 public class KafkaConsumer {
@@ -31,21 +31,16 @@ public class KafkaConsumer {
     @Transactional
     public void receiveCreateEntity(@Payload BusinessEntity data,
                                     @Headers MessageHeaders headers) {
-        LOG.info("received from SGE data");
+        LOG.info("received from BusinessEntityManagementSystem data");
         //LOG.info("received from business-entity-management-system data='{}'", data);
-		*/
-/*headers.keySet().forEach(key -> {
-					LOG.info("{}: {}", key, headers.get(key));
-				});*//*
+        headers.keySet().forEach(key -> {
+                            LOG.info("{}: {}", key, headers.get(key));
+                        });
 
-
-        BusinessEntityModel recivedEntity = new BusinessEntityModel();
-
-      //  businessEntityRepository.save(BindingUniverseDefaultSchemaToUniverse.Binding(recivedEntity, data));
+        businessEntityRepository.save(RetrieveConsumerFromReceivedProducerObject.Binding(new BusinessEntityModel(), data));
     }
 
-	*/
-/*@KafkaListener(topics = "${statistics.kafka.topic.update.entity}", groupId = "statistics-BusinessEntityManagementSystem-group")
+   /* @KafkaListener(topics = "${statistics.kafka.topic.update.entity}", groupId = "statistics-BusinessEntityManagementSystem-group")
 	@KafkaHandler
 	public void receiveUpdateEntity(@Payload BusinessEntity data,
 	                                @Headers MessageHeaders headers) {
@@ -54,8 +49,7 @@ public class KafkaConsumer {
 		headers.keySet().forEach(key -> {
 			LOG.info("{}: {}", key, headers.get(key));
 		});
-	}*//*
+	}*/
 
 }
 
-*/

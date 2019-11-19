@@ -1,11 +1,14 @@
 package com.BusinessStatisticsUnitFiles.dataTransferObject;
 
+import com.BusinessStatisticsUnitFiles.interfaces.models.IPartnerModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /*@JsonInclude(JsonInclude.Include.NON_NULL)*/
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Partner {
+public class Partner extends AuditModel<String> implements IPartnerModel, Serializable {
 
     @JsonProperty("name")
     private String name;

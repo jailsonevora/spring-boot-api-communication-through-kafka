@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="BEMS_Village")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class VillageModel <ICommuneModel extends CountyModel> extends AuditModel<String> implements IVillageModel, Serializable{
+public class VillageModel <ICommuneModel extends CountyModel> extends AuditModel<String> implements IVillageModel<ICommuneModel>, Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

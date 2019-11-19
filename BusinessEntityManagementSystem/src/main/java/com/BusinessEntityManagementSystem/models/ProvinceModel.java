@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="BEMS_Province")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ProvinceModel <ICountryModel extends CountryModel> extends AuditModel<String> implements IProvinceModel, Serializable {
+public class ProvinceModel <ICountryModel extends CountryModel> extends AuditModel<String> implements IProvinceModel<ICountryModel>, Serializable {
 
 
     @Id
@@ -71,6 +71,14 @@ public class ProvinceModel <ICountryModel extends CountryModel> extends AuditMod
     }
 
     public void setStatus(int status) { this.status = status; }
+
+    public ICountryModel getCountry() {
+        return country;
+    }
+
+    public void setCountry(ICountryModel country) {
+        this.country = country;
+    }
 
     //endregion
 }

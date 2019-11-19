@@ -48,7 +48,7 @@ public class AffiliatedCompanyController implements IGenericCRUD<AffiliatedCompa
     @Transactional
     @RequestMapping(value = "/affiliatedCompany", method = RequestMethod.POST, produces = "application/json")
     @ApiOperation(value = "Creates a new Affiliated Company", notes="The newly created Affiliated Company Id will be sent in the location response header")
-    public ResponseEntity<Void> create(@Valid @RequestBody AffiliatedCompanyModel newAffiliatedCompany){
+    public ResponseEntity<String> create(@Valid @RequestBody AffiliatedCompanyModel newAffiliatedCompany){
 
         newAffiliatedCompany = affiliatedCompanyRepository.save(newAffiliatedCompany);
 

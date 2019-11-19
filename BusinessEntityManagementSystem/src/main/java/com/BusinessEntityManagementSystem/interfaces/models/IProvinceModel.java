@@ -1,6 +1,6 @@
 package com.BusinessEntityManagementSystem.interfaces.models;
 
-public interface IProvinceModel {
+public interface IProvinceModel<ICountryModel> {
 
     String getProvince();
 
@@ -13,4 +13,8 @@ public interface IProvinceModel {
     int getStatus();
 
     void setStatus(int status);
+
+    ICountryModel getCountry();
+
+    void setCountry(ICountryModel country);
 }

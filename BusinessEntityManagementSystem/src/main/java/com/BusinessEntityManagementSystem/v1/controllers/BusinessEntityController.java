@@ -1,6 +1,7 @@
 package com.BusinessEntityManagementSystem.v1.controllers;
 
-import com.BusinessEntityManagementSystem.dataAccessObject.IBusinessEntityRepository;
+import com.BusinessEntityManagementSystem.dataAccessObject.*;
+import com.BusinessEntityManagementSystem.dataTransferObject.BusinessEntity;
 import com.BusinessEntityManagementSystem.interfaces.resource.IGenericCRUD;
 import com.BusinessEntityManagementSystem.models.BusinessEntityModel;
 import com.Common.Util.Status;
@@ -20,7 +21,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Optional;
+
+import com.BusinessEntityManagementSystem.binding.ProducerToConsumerBindingObject;
+import com.BusinessEntityManagementSystem.kafka.KafkaProducer;
 
 @RestController("BusinessEntityV1")
 @RequestMapping("/api/businessEntityManagementSystem/v1")
@@ -30,10 +35,23 @@ public class BusinessEntityController implements IGenericCRUD<BusinessEntityMode
     @PersistenceContext
     private EntityManager entityManager;
     private final IBusinessEntityRepository businessEntityRepository;
+    private final KafkaProducer kafkaProducer;
+    private final IAddressRepository addressRepository;
+    private final IPartnerRepository partnerRepository;
+    private final IStoreRepository storeRepository;
+    private final IAffiliatedCompanyRepository affiliatedCompanyRepository;
+    private final IEconomicActivityCodeRepository economicActivityCodeRepository;
 
     @Autowired
-    public BusinessEntityController(IBusinessEntityRepository businessEntityRepository) {
+    public BusinessEntityController(IBusinessEntityRepository businessEntityRepository, KafkaProducer kafkaProducer, IAddressRepository addressRepository, IPartnerRepository partnerRepository , IStoreRepository storeRepository,
+                                    IAffiliatedCompanyRepository affiliatedCompanyRepository, IEconomicActivityCodeRepository economicActivityCodeRepository) {
         this.businessEntityRepository = businessEntityRepository;
+        this.kafkaProducer = kafkaProducer;
+        this.addressRepository = addressRepository;
+        this.partnerRepository = partnerRepository;
+        this.storeRepository = storeRepository;
+        this.affiliatedCompanyRepository = affiliatedCompanyRepository;
+        this.economicActivityCodeRepository = economicActivityCodeRepository;
     }
 
     @RequestMapping(value = "/businessEntity/{id}", method = RequestMethod.GET, produces = "application/json")
@@ -49,24 +67,27 @@ public class BusinessEntityController implements IGenericCRUD<BusinessEntityMode
         return new ResponseEntity<>(businessEntityRepository.findAllByStatus(Status.PUBLISHED.ordinal(), pageable), HttpStatus.OK);
     }
 
-    @RequestMapping(value="/checkentity/{key}", method=RequestMethod.GET, produces = "application/json")
-    @ApiOperation(value = "Validate entry entity")
-    public ResponseEntity<?> checkentity(@Valid @PathVariable String key) {
-
-        if (businessEntityRepository.existsBusinessEntityModelByNaturalId(key))
-            return new ResponseEntity<String>(HttpStatus.OK);
-        else
-            throw new ResourceNotFoundException("Entity with validation code " + key + " not found");
-    }
-
     @Transactional
     @RequestMapping(value = "/businessEntity", method = RequestMethod.POST, produces = "application/json")
     @ApiOperation(value = "Creates a new entity", notes="The newly created entity Id will be sent in the location response header")
-    public ResponseEntity<Void> create(@Valid @RequestBody BusinessEntityModel newEntity){
+    public ResponseEntity<String> create(@Valid @RequestBody BusinessEntityModel newEntity) {
 
-        // Set the location header for the newly created resource*/
-        return new ResponseEntity <>(null, getHttpHeaders(businessEntityRepository.save(newEntity)), HttpStatus.CREATED);
+        // send to kafka
+        ProducerToConsumerBindingObject entityToPublishToKafkaBroker = new ProducerToConsumerBindingObject(addressRepository, partnerRepository, storeRepository, affiliatedCompanyRepository, economicActivityCodeRepository);
+        BusinessEntity result = entityToPublishToKafkaBroker.BindingByHardCode(new BusinessEntity(), newEntity);
+        /*BusinessEntity result = null;
+        try {
+            result = entityToPublishToKafkaBroker.BindingWithObjectMapper(new BusinessEntity(), newEntity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 
+
+        if (result != null)
+            kafkaProducer.send(result);
+
+        // Set the location header for the newly created resource
+        return new ResponseEntity <String>(null, getHttpHeaders(businessEntityRepository.save(newEntity)), HttpStatus.CREATED);
     }
 
     @Transactional
@@ -118,7 +139,7 @@ public class BusinessEntityController implements IGenericCRUD<BusinessEntityMode
     }
 
     private void checkIfExist(Long id) throws ResourceNotFoundException {
-        businessEntityRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()).orElseThrow(() -> new ResourceNotFoundException("Country with id " + id + " not found"));
+        businessEntityRepository.findByIdAndStatus(id, Status.PUBLISHED.ordinal()).orElseThrow(() -> new ResourceNotFoundException("Entity with id " + id + " not found"));
     }
     // endregion
 }

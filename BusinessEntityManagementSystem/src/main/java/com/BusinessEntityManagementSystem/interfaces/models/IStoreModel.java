@@ -1,6 +1,8 @@
 package com.BusinessEntityManagementSystem.interfaces.models;
 
-public interface IStoreModel {
+import java.util.Set;
+
+public interface IStoreModel<IEconomicActivityCodeModel> {
 
 
     String getName();
@@ -10,4 +12,8 @@ public interface IStoreModel {
     int getStatus();
 
     void setStatus(int status);
+
+    Set<IEconomicActivityCodeModel> getEconomicActivityCode();
+
+    void setEconomicActivityCode(Set<IEconomicActivityCodeModel> economicActivityCode);
 }

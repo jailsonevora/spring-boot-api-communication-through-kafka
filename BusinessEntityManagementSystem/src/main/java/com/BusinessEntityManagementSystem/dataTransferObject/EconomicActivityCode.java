@@ -1,11 +1,14 @@
 package com.BusinessEntityManagementSystem.dataTransferObject;
 
+import com.BusinessEntityManagementSystem.interfaces.models.IEconomicActivityCodeModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /*@JsonInclude(JsonInclude.Include.NON_NULL)*/
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class EconomicActivityCode {
+public class EconomicActivityCode extends AuditModel<String> implements IEconomicActivityCodeModel, Serializable {
 
     @JsonProperty("economicActivityCode")
     private String economicActivityCode;

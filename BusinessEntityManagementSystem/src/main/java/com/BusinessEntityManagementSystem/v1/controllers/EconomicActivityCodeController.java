@@ -53,7 +53,7 @@ public class EconomicActivityCodeController implements IGenericCRUD<EconomicActi
     @Transactional
     @RequestMapping(value = "/economicActivityCode", method = RequestMethod.POST, produces = "application/json")
     @ApiOperation(value = "Creates a new Economic Activity Code", notes="The newly created Economic Activity Code Id will be sent in the location response header")
-    public ResponseEntity<Void> create(@Valid @RequestBody EconomicActivityCodeModel newActivity){
+    public ResponseEntity<String> create(@Valid @RequestBody EconomicActivityCodeModel newActivity){
 
         newActivity = economicActivityCodeRepository.save(newActivity);
 

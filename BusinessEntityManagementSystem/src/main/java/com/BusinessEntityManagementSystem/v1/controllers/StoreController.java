@@ -54,7 +54,7 @@ public class StoreController implements IGenericCRUD<StoreModel> {
     @Transactional
     @RequestMapping(value = "/store", method = RequestMethod.POST, produces = "application/json")
     @ApiOperation(value = "Creates a new store", notes="The newly created store ID will be sent in the location response header")
-    public ResponseEntity<Void> create(@Valid @RequestBody StoreModel newStore){
+    public ResponseEntity<String> create(@Valid @RequestBody StoreModel newStore){
 
         newStore = storeRepository.save(newStore);
 

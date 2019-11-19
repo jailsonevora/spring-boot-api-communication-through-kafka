@@ -50,7 +50,7 @@ public class AcademicDegreeController implements IGenericCRUD<AcademicDegreeMode
     @Transactional
     @RequestMapping(value = "/academicDegrees", method = RequestMethod.POST, produces = "application/json")
     @ApiOperation(value = "Creates a new degree", notes="The newly created degree Id will be sent in the location response header")
-    public ResponseEntity<Void> create(@Valid @RequestBody AcademicDegreeModel newDegree){
+    public ResponseEntity<String> create(@Valid @RequestBody AcademicDegreeModel newDegree){
 
         newDegree = academicDegreeRepository.save(newDegree);
 

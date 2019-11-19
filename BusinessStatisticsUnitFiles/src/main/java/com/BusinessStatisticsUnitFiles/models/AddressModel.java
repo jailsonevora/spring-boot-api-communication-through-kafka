@@ -39,8 +39,6 @@ public class AddressModel extends AuditModel<String> implements IAddressModel, S
 
     public long getAddressId() { return id; }
 
-    public void setAddressId(long id) { this.id = id; }
-
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }

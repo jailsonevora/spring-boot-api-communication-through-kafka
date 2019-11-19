@@ -8,7 +8,6 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
-/*
 
 @Service
 public class KafkaProducer {
@@ -29,4 +28,3 @@ public class KafkaProducer {
         System.out.println("Message BusinessStatisticsUnitFiles in byte: " + message + " sent to topic: " + kafkaTopic);
     }
 }
-*/

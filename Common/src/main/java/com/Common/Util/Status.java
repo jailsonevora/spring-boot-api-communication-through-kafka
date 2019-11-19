@@ -1,7 +1,7 @@
 package com.Common.Util;
 
 public enum Status{
-    PUBLISHED (1),
+    PUBLISHED (0),
     UNPUBLISHED (0);
 
     private final int status;

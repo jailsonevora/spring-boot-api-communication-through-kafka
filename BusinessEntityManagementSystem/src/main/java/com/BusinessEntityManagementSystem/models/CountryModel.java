@@ -58,5 +58,7 @@ public class CountryModel extends AuditModel<String> implements ICountryModel, S
 
     public void setStatus(int status) { this.status = status; }
 
+
+
     //endregion
 }

@@ -3,6 +3,7 @@ package com.BusinessEntityManagementSystem.models;
 import com.BusinessEntityManagementSystem.interfaces.models.IAddressModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -25,13 +26,16 @@ public class AddressModel extends AuditModel<String> implements IAddressModel, S
     @Column(name = "Email")
     @Email
     @Size(max=60)
+    @JsonProperty("email")
     private String email;
 
     @Column(name = "Address")
     @Size(max=120)
+    @JsonProperty("address")
     private String address;
 
     @Column(name = "Status")
+    @JsonProperty("status")
     private int status = 1;
 
 

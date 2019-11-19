@@ -1,6 +1,8 @@
 package com.BusinessEntityManagementSystem.interfaces.models;
 
-public interface IBusinessEntityModel {
+import java.util.Set;
+
+public interface IBusinessEntityModel<IAddressModel, IPartnerModel, IStoreModel, IAffiliatedCompanyModel, IEconomicActivityCodeModel> {
 
     long getNaturalId();
 
@@ -13,4 +15,24 @@ public interface IBusinessEntityModel {
     int getStatus();
 
     void setStatus(int status);
+
+    IAddressModel getAddress();
+
+    void setAddress(IAddressModel address);
+
+    Set<IPartnerModel> getPartner();
+
+    void setPartner(Set<IPartnerModel> partner);
+
+    Set<IStoreModel> getStore();
+
+    void setStore(Set<IStoreModel> store);
+
+    Set<IAffiliatedCompanyModel> getAffiliatedCompany();
+
+    void setAffiliatedCompany(Set<IAffiliatedCompanyModel> affiliatedCompany);
+
+    Set<IEconomicActivityCodeModel> getEconomicActivityCode();
+
+    void setEconomicActivityCode(Set<IEconomicActivityCodeModel> economicActivityCode);
 }

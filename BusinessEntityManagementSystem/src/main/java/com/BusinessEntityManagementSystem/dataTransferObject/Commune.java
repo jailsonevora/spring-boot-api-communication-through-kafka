@@ -1,11 +1,14 @@
 package com.BusinessEntityManagementSystem.dataTransferObject;
 
+import com.BusinessEntityManagementSystem.interfaces.models.ICommuneModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /*@JsonInclude(JsonInclude.Include.NON_NULL)*/
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Commune {
+public class Commune extends AuditModel<String> implements ICommuneModel, Serializable {
 
     @JsonProperty("commune")
     private String commune;

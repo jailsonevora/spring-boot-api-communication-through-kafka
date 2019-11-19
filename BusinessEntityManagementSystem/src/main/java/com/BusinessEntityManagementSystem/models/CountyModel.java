@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="BEMS_County")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class CountyModel <IProvinceModel extends ProvinceModel> extends AuditModel<String> implements ICountyModel, Serializable {
+public class CountyModel <IProvinceModel extends ProvinceModel> extends AuditModel<String> implements ICountyModel<IProvinceModel>, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -71,6 +71,14 @@ public class CountyModel <IProvinceModel extends ProvinceModel> extends AuditMod
     }
 
     public void setStatus(int status) { this.status = status; }
+
+    public IProvinceModel getProvince() {
+        return province;
+    }
+
+    public void setProvince(IProvinceModel province) {
+        this.province = province;
+    }
 
     //endregion
 }

@@ -1,5 +1,6 @@
 package com.BusinessStatisticsUnitFiles.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.BusinessStatisticsUnitFiles.interfaces.models.IBusinessEntityModel;
 import org.hibernate.annotations.OnDelete;
@@ -15,12 +16,14 @@ import java.util.Set;
 @Entity
 @Table(name="BSUF_BusinessEntity")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class BusinessEntityModel<IAddressModel extends AddressModel, IPartnerModel extends PartnerModel, IStoreModel extends StoreModel, IAffiliatedCompanyModel extends AffiliatedCompanyModel, IEconomicActivityCodeModel extends EconomicActivityCodeModel> extends AuditModel<String> implements IBusinessEntityModel, Serializable {
+public class BusinessEntityModel<IAddressModel extends AddressModel, IPartnerModel extends PartnerModel, IStoreModel extends StoreModel, IAffiliatedCompanyModel extends AffiliatedCompanyModel, IEconomicActivityCodeModel extends EconomicActivityCodeModel> extends AuditModel<String> implements
+        IBusinessEntityModel<IAddressModel, IPartnerModel, IStoreModel, IAffiliatedCompanyModel, IEconomicActivityCodeModel>, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     @Column(name = "ID_BusinessEntity", updatable = false, nullable = false)
+    @JsonIgnore
     private long id;
 
     //@NaturalId
@@ -36,6 +39,9 @@ public class BusinessEntityModel<IAddressModel extends AddressModel, IPartnerMod
     @Column(name = "Status")
     private int status = 1;
 
+    @Size(max=50)
+    @Column(name = "Country")
+    private String country;
 
     // region OneToOne
 
@@ -97,8 +103,6 @@ public class BusinessEntityModel<IAddressModel extends AddressModel, IPartnerMod
 
     public long getBusinessId() { return id; }
 
-    public void setBusinessId(long id) { this.id = id; }
-
     public long getNaturalId() { return naturalId; }
 
     public void setNaturalId(long naturalId) { this.naturalId = naturalId; }
@@ -110,4 +114,52 @@ public class BusinessEntityModel<IAddressModel extends AddressModel, IPartnerMod
     public int getStatus() { return status; }
 
     public void setStatus(int status) { this.status = status; }
+
+    public IAddressModel getAddress() {
+        return address;
+    }
+
+    public void setAddress(IAddressModel address) {
+        this.address = address;
+    }
+
+    public Set<IPartnerModel> getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Set<IPartnerModel> partner) {
+        this.partner = partner;
+    }
+
+    public Set<IStoreModel> getStore() {
+        return store;
+    }
+
+    public void setStore(Set<IStoreModel> store) {
+        this.store = store;
+    }
+
+    public Set<IAffiliatedCompanyModel> getAffiliatedCompany() {
+        return affiliatedCompany;
+    }
+
+    public void setAffiliatedCompany(Set<IAffiliatedCompanyModel> affiliatedCompany) {
+        this.affiliatedCompany = affiliatedCompany;
+    }
+
+    public Set<IEconomicActivityCodeModel> getEconomicActivityCode() {
+        return economicActivityCode;
+    }
+
+    public void setEconomicActivityCode(Set<IEconomicActivityCodeModel> economicActivityCode) {
+        this.economicActivityCode = economicActivityCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }

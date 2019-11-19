@@ -1,11 +1,14 @@
 package com.BusinessEntityManagementSystem.dataTransferObject;
 
+import com.BusinessEntityManagementSystem.interfaces.models.ICountryModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /*@JsonInclude(JsonInclude.Include.NON_NULL)*/
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Country {
+public class Country extends AuditModel<String> implements ICountryModel, Serializable {
 
     @JsonProperty("country")
     private String country;

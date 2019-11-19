@@ -45,8 +45,6 @@ public class AffiliatedCompanyModel<IBusinessEntityModel extends BusinessEntityM
 
     public long getAffiliatedCompanyId() { return id; }
 
-    public void setAffiliatedCompanyId(long id) { this.id = id; }
-
     public float getPercentageShared() { return percentageShared; }
 
     public void setPercentageShared(float percentageShared) { this.percentageShared = percentageShared; }

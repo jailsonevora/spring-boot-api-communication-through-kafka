@@ -14,7 +14,7 @@ public interface IGenericCRUD<T> {
 
     ResponseEntity<Page<T>> getAll(Pageable pageable);
 
-    ResponseEntity<Void> create(@Valid @RequestBody T newEntry);
+    ResponseEntity<String> create(@Valid @RequestBody T newEntry);
 
     ResponseEntity<Void> update(@Valid @PathVariable Long id, @Valid @RequestBody T toUpdate);
 

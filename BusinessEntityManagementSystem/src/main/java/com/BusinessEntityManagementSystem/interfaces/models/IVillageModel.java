@@ -1,6 +1,6 @@
 package com.BusinessEntityManagementSystem.interfaces.models;
 
-public interface IVillageModel {
+public interface IVillageModel<ICommuneModel> {
 
     String getVillage();
 
@@ -13,4 +13,8 @@ public interface IVillageModel {
     int getStatus();
 
     void setStatus(int status);
+
+    ICommuneModel getCommune();
+
+    void setCommune(ICommuneModel commune);
 }

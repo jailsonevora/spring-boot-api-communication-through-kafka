@@ -1,11 +1,14 @@
 package com.BusinessStatisticsUnitFiles.dataTransferObject;
 
+import com.BusinessStatisticsUnitFiles.interfaces.models.IAddressModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+
 /*@JsonInclude(JsonInclude.Include.NON_NULL)*/
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Address {
+public class Address extends AuditModel<String> implements IAddressModel, Serializable  {
 
     @JsonProperty("email")
     private String email;

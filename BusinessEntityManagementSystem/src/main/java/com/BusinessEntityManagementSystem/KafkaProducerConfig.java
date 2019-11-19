@@ -16,10 +16,10 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
-/*@Configuration
+@Configuration
 @EnableKafka
 public class KafkaProducerConfig {
-*//*
+
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
@@ -40,6 +40,6 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, BusinessEntity> kafkaTemplate() {
         return new KafkaTemplate<String, BusinessEntity>(producerFactory());
-    }*//*
-}*/
+    }
+}
 

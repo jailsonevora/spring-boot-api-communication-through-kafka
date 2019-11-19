@@ -1,12 +1,18 @@
 package com.BusinessStatisticsUnitFiles.dataTransferObject;
 
+import com.BusinessStatisticsUnitFiles.interfaces.models.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 /*@JsonInclude(JsonInclude.Include.NON_NULL)*/
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class BusinessEntity {
+public class BusinessEntity<IAddressModel, IPartnerModel, IStoreModel, IAffiliatedCompanyModel, IEconomicActivityCodeModel>
+        extends AuditModel<String> implements IBusinessEntityModel<IAddressModel, IPartnerModel, IStoreModel, IAffiliatedCompanyModel, IEconomicActivityCodeModel>, Serializable {
 
     @JsonProperty("naturalId")
     @JsonIgnore
@@ -18,6 +24,23 @@ public class BusinessEntity {
     @JsonProperty("status")
     private int status = 1;
 
+    @JsonProperty("address")
+    private IAddressModel address;
+
+    @JsonProperty("partner")
+    private Set<IPartnerModel> partner = new HashSet<>();
+
+    @JsonProperty("store")
+    private Set<IStoreModel> store = new HashSet<>();
+
+    @JsonProperty("affiliatedCompany")
+    private Set<IAffiliatedCompanyModel> affiliatedCompany = new HashSet<>();
+
+    @JsonProperty("economicActivityCode")
+    private Set<IEconomicActivityCodeModel> economicActivityCode = new HashSet<>();
+
+    @JsonProperty("country")
+    private String country;
 
 
     public long getNaturalId() { return naturalId; }
@@ -31,4 +54,52 @@ public class BusinessEntity {
     public int getStatus() { return status; }
 
     public void setStatus(int status) { this.status = status; }
+
+    public IAddressModel getAddress() {
+        return address;
+    }
+
+    public void setAddress(IAddressModel address) {
+        this.address = address;
+    }
+
+    public Set<IPartnerModel> getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Set<IPartnerModel> partner) {
+        this.partner = partner;
+    }
+
+    public Set<IStoreModel> getStore() {
+        return store;
+    }
+
+    public void setStore(Set<IStoreModel> store) {
+        this.store = store;
+    }
+
+    public Set<IAffiliatedCompanyModel> getAffiliatedCompany() {
+        return affiliatedCompany;
+    }
+
+    public void setAffiliatedCompany(Set<IAffiliatedCompanyModel> affiliatedCompany) {
+        this.affiliatedCompany = affiliatedCompany;
+    }
+
+    public Set<IEconomicActivityCodeModel> getEconomicActivityCode() {
+        return economicActivityCode;
+    }
+
+    public void setEconomicActivityCode(Set<IEconomicActivityCodeModel> economicActivityCode) {
+        this.economicActivityCode = economicActivityCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }

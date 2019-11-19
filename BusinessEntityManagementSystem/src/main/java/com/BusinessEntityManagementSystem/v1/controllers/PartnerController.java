@@ -53,7 +53,7 @@ public class PartnerController implements IGenericCRUD<PartnerModel> {
     @Transactional
     @RequestMapping(value = "/partners", method = RequestMethod.POST, produces = "application/json")
     @ApiOperation(value = "Creates a new partner", notes="The newly created partner Id will be sent in the location response header")
-    public ResponseEntity<Void> create(@Valid @RequestBody PartnerModel newPartner){
+    public ResponseEntity<String> create(@Valid @RequestBody PartnerModel newPartner){
 
         newPartner = partnerRepository.save(newPartner);
 
