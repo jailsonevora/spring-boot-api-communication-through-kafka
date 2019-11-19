@@ -1,7 +1,7 @@
 # Key Java @Annotations to build full Spring Boot Rest API
 
-Source code for my blog (www.jeevora.com) post about Key Java @Annotations to build full Spring Boot Rest API
- (https://www.jeevora.com/2019/09/16/key-java-annotations-to-build-spring-boot-rest-api/ and https://dzone.com/articles/key-java-annotations-to-build-full-spring-boot-res) https://www.jeevora.com/
+Sample for the (www.jeevora.com) post about Key Java @Annotations to build full Spring Boot Rest API
+ (https://www.jeevora.com/2019/09/16/key-java-annotations-to-build-spring-boot-rest-api/ and https://dzone.com/articles/key-java-annotations-to-build-full-spring-boot-res)
 
 This post aims to demonstrate important Java @annotations used to build a functional Spring Boot REST API. The use of Java annotation gives developers the capability to reduce the code verbosity by a simple annotation.
 
@@ -13,6 +13,8 @@ The project structure is constituted by three modules, but this post will focus 
 
 
 # Microservices in Publish-Subscribe communication using Apache Kafka as a Messaging Systems and validated through Integration Test.
+
+Sample for the (www.jeevora.com) post about Microservices in Publish-Subscribe communication using Apache Kafka as a Messaging Systems and validated through Integration Test  (https://www.jeevora.com/2019/11/18/publish-subscribe-messaging-systems/) https://www.jeevora.com/
 
 Messaging systems play an important role in any enterprise architecture as it enables reliable integration without tightly coupling the applications. It also allow the transfer of packets of data frequently, immediately and asynchronously, using customizable formats.
 
