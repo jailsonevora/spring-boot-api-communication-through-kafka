@@ -14,7 +14,7 @@ The project structure is constituted by three modules, but this post will focus 
 
 # Microservices in Publish-Subscribe communication using Apache Kafka as a Messaging Systems and validated through Integration Test.
 
-Sample for the (www.jeevora.com) post about Microservices in Publish-Subscribe communication using Apache Kafka as a Messaging Systems and validated through Integration Test  (https://www.jeevora.com/2019/11/18/publish-subscribe-messaging-systems/) https://www.jeevora.com/
+Sample for the (www.jeevora.com) post about Microservices in Publish-Subscribe communication using Apache Kafka as a Messaging Systems and validated through Integration Test (https://www.jeevora.com/2019/11/18/publish-subscribe-messaging-systems/ and https://dzone.com/articles/microservices-in-publish-subscribe-communication-u)
 
 Messaging systems play an important role in any enterprise architecture as it enables reliable integration without tightly coupling the applications. It also allow the transfer of packets of data frequently, immediately and asynchronously, using customizable formats.
 
